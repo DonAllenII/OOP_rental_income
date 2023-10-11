@@ -147,3 +147,37 @@ class ROI():
                 self.totalinvested += self.i
 
 
+class Handler():
+    def __init__(self):
+        pass
+
+
+    def run(self):
+        while True:
+            action = str(input("What would you like to do?\n Press 'n' for new\n Press 'i' for individual\n "))
+            if action.lower() == "n":
+                income.initial()
+                income.totalIncome()
+                print(income.totaledIncome)
+                expenses.initial()
+                expenses.totalExpenses()
+                clear_output()
+                print(expenses.totaledExpenses)
+                print(income.totaledIncome)
+                cashflow = Cashflow(income.totaledIncome, expenses.totaledExpenses)
+                cashflow.monthlyCashflow()
+                cashflow.annualCashflow()
+                print(f'The monthly cashflow for this property is ${cashflow.monthlyCash}.')
+                print(f'The annual cashflow for this property is ${cashflow.annualCash}.')
+                roi.initial()
+                roi.totalInvestment()
+                
+            
+                
+            break
+
+income = Income(rentalIncome, laundryIncome, storageIncome, miscIncome)
+expenses = Expenses(mortgage, taxes, insurance, water, garbage, electric, HOA, lawnCare, vacancy, repairs, capEx, propManagement)
+roi = ROI(downpayment, closingcosts, rehabBudget, misc)
+handle = Handler()
+handle.run()
