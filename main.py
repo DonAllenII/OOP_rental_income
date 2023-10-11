@@ -1,3 +1,6 @@
+from IPython.display import clear_output
+
+
 class Value():
     def __init__(self, name):
         self.name = name
@@ -48,3 +51,59 @@ vacancy = Value('vacancy')
 repairs = Value('repairs')
 capEx = Value('capital expenditures')
 propManagement = Value('property management')
+
+
+class Expenses():
+    def __init__(self, mortgage, taxes, insurance, water, garbage, electric, HOA, lawnCare, vacancy, repairs, capEx, propManagement):
+        self.mortgage = mortgage
+        self.taxes = taxes
+        self.insurance = insurance
+        self.water = water
+        self.garbage = garbage
+        self.electric = electric
+        self.HOA = HOA
+        self.lawnCare = lawnCare
+        self.vacancy = vacancy
+        self.repairs = repairs
+        self.capEx = capEx
+        self.propManagement = propManagement
+        self.totaledExpenses = 0
+        self.expenses = [self.mortgage, self.taxes, self.insurance, self.water, self.garbage, self.electric, self.HOA, 
+                         self.lawnCare, self.vacancy, self.repairs, self.capEx, self.propManagement]
+    
+
+    
+    
+    def initial(self):
+        for i in self.expenses:
+            clear_output()
+            action = str(input(f'Would you like to input a value for this expense ({i.name})?'))
+            if action.lower() == "no":
+                continue
+            if action.lower() == "yes":
+                value = int(input(f'How much in {i.name} for this property?'))
+                i.value = value
+                print(i.value)
+                
+    def totalExpenses(self):
+        for i in self.expenses:
+            if isinstance(i.value, int):
+                self.totaledExpenses += i.value
+
+
+class Cashflow():
+    def __init__(self, income, expenses):
+        self.income = income
+        self.expenses = expenses
+
+
+    def monthlyCashflow(self):
+        self.monthlyCash = self.income - self.expenses
+
+    def annualCashflow(self):
+        self.annualCash = self.monthlyCash * 12
+
+downpayment = Value('down payment')
+closingcosts = Value('closing costs')
+rehabBudget = Value('rehab budget')
+misc = Value('Miscellenious')
