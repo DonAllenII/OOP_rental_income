@@ -107,3 +107,43 @@ downpayment = Value('down payment')
 closingcosts = Value('closing costs')
 rehabBudget = Value('rehab budget')
 misc = Value('Miscellenious')
+
+class ROI():
+    def __init__(self, downpayment, closingcosts, rehabBudget, misc):
+        self.downpayment = downpayment
+        self.closingcosts = closingclosts
+        self.rehab = rehabBudget
+        self.misc = misc
+        self.invested = [self.downPayment, self.closingcosts, self.rehabBudget, self.misc]
+
+    def downPayment(self, downpayment):
+        self.downpayment = downpayment
+
+    def closingCosts(self, closingcosts):
+        self.closingcosts = closingcosts
+
+    def rehabBudget(self, rehabBudget):
+        self.rehab = rehabBudget
+
+    def miscCosts(self, misc):
+        self.misc = misc
+
+    invested = [downPayment, closingCosts, rehabBudget, miscCosts]
+
+    def initial(self):
+        for i in self.invested:
+            clear_output()
+            action = str(input(f'Would you like to input a value for this expense ({i.name})?'))
+            if action.lower() == "no":
+                continue
+            if action.lower() == "yes":
+                value = int(input(f'How much in {i.name} for this property?'))
+                i.value = value
+                print(i.value)
+
+    def totalInvestment(self):
+        for i in invested:
+            if i != None:
+                self.totalinvested += self.i
+
+
