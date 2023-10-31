@@ -163,23 +163,29 @@ class Handler():
     #method for running the rental income program
     def run(self):
         while True:
-            action = str(input("What would you like to do?\n Press 'n' for new\n Press 'i' for individual\n "))
-            if action.lower() == "n":
-                income.initial()
-                income.totalIncome()
-                print(income.totaledIncome)
-                expenses.initial()
-                expenses.totalExpenses()
-                clear_output()
-                print(expenses.totaledExpenses)
-                print(income.totaledIncome)
-                cashflow = Cashflow(income.totaledIncome, expenses.totaledExpenses)
-                cashflow.monthlyCashflow()
-                cashflow.annualCashflow()
-                print(f'The monthly cashflow for this property is ${cashflow.monthlyCash}.')
-                print(f'The annual cashflow for this property is ${cashflow.annualCash}.')
-                roi.initial()
-                roi.totalInvestment()
+            action = str(input("What would you like to do?\n Press 's' to fill out sections\n Press 'i' for individual\n "))
+            if action.lower() == "s":
+                action = str(input("Which section would you like fill out?\n Press 'I' for Income\n Press 'E' for Expenses\n Press 'C' for Cashflow\n Press 'R' for ROI(Return on Investment) "))
+                if action.lower() == "i":
+                    income.initial()
+                    income.totalIncome()
+                    print(income.totaledIncome)
+                
+                if action.lower() == "e":
+                    expenses.initial()
+                    expenses.totalExpenses()
+                    clear_output()
+                    print(expenses.totaledExpenses)
+                    print(income.totaledIncome)
+                if action.lower() == "c":
+                    cashflow = Cashflow(income.totaledIncome, expenses.totaledExpenses)
+                    cashflow.monthlyCashflow()
+                    cashflow.annualCashflow()
+                    print(f'The monthly cashflow for this property is ${cashflow.monthlyCash}.')
+                    print(f'The annual cashflow for this property is ${cashflow.annualCash}.')
+                if action.lower() == "r":
+                    roi.initial()
+                    roi.totalInvestment()
                 
             
                 
