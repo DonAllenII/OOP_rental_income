@@ -164,8 +164,8 @@ class Handler():
     #method for running the rental income program
     def run(self):
         while True:
-            action = str(input("What would you like to do?\n Press 's' to fill out sections\n Press 'i' for individual\n "))
-            if action.lower() == "s":
+            action = str(input("What would you like to do?\n Press 'F' to fill out sections\n Press 'S' for stats & information\n Press 'Q' to quit program"))
+            if action.lower() == "f":
                 action = str(input("Which section would you like fill out?\n Press 'I' for Income\n Press 'E' for Expenses\n Press 'C' for Cashflow\n Press 'R' for ROI(Return on Investment) "))
                 if action.lower() == "i":
                     income.initial()
@@ -176,9 +176,13 @@ class Handler():
                     expenses.initial()
                     expenses.totalExpenses()
                     clear_output()
-                    print(expenses.totaledExpenses)
-                    print(income.totaledIncome)
+                    print(f'Total expenses are ${expenses.totaledExpenses}.')
+                    print(f'Total income is ${income.totaledIncome}.')
                 if action.lower() == "c":
+                    if income.totaledIncome == 0:
+                        print(f'Please update income to reflect a more accurate cashflow.')
+                    if expenses.totaledExpenses == 0:
+                        print(f'Please update expenses to reflect a more accurate cashflow.')
                     cashflow = Cashflow(income.totaledIncome, expenses.totaledExpenses)
                     cashflow.monthlyCashflow()
                     cashflow.annualCashflow()
@@ -187,11 +191,30 @@ class Handler():
                 if action.lower() == "r":
                     roi.initial()
                     roi.totalInvestment()
-                    print(roi.totalinvested)
+                    print(f'The total invested in this property is ${roi.totalinvested}.')
+            if action.lower() == "s":
+                action = str(input("Which info would you like?\n Press 'M' for income\n Press 'E'  for expenses\n Press 'C'  for cashflow\n Press 'R' for Cash on Cash ROI"))
+                if action.lower() == 'm':
+                    print(f'Total income for this property is ${income.totaledIncome}.')
+                if action.lower() == 'e':
+                    print(f'Total expenses for this property are ${expense.totaledExpenses}')
+                if action.lower() == 'c':
+                    if income.totaledIncome == 0:
+                        print(f'Please update income to reflect a more accurate cashflow.')
+                    if expenses.totaledExpenses == 0:
+                        print(f'Please update expenses to reflect a more accurate cashflow.')
+                    cashflow = Cashflow(income.totaledIncome, expenses.totaledExpenses)
+                    cashflow.monthlyCashflow()
+                    cashflow.annualCashflow()
+                    print(f'The monthly cashflow for this property is ${cashflow.monthlyCash}.')
+                    print(f'The annual cashflow for this property is ${cashflow.annualCash}.')
+                    print(f'The total investment in this property is ${roi.totalinvested}')
+                    print(f'The cash on cash ROI for this property is {roi.roi}')
+            if action.lower() == "q":
+                break
                 
             
                 
-            break
 
 #instantiating an instance of the Income class
 income = Income(rentalIncome, laundryIncome, storageIncome, miscIncome)
