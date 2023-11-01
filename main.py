@@ -156,6 +156,11 @@ class ROI():
             if i.value != None:
                 self.totalinvested += i.value
 
+    #method for determining cash on cash ROI
+    def roi(self, aCashflow):
+        self.roi = aCashflow / self.totalinvested
+
+
 #initializing the Handler Class
 class Handler():
     def __init__(self):
@@ -208,6 +213,7 @@ class Handler():
                     cashflow.annualCashflow()
                     print(f'The monthly cashflow for this property is ${cashflow.monthlyCash}.')
                     print(f'The annual cashflow for this property is ${cashflow.annualCash}.')
+                if action.lower() == 'r':
                     print(f'The total investment in this property is ${roi.totalinvested}')
                     print(f'The cash on cash ROI for this property is {roi.roi}')
             if action.lower() == "q":
