@@ -120,7 +120,8 @@ class ROI():
         self.closingcosts = closingcosts
         self.rehab = rehabBudget
         self.misc = misc
-        self.invested = [self.downPayment, self.closingcosts, self.rehabBudget, self.misc]
+        self.totalinvested = 0
+        self.invested = [self.downpayment, self.closingcosts, self.rehab, self.misc]
 
     def downPayment(self, downpayment):
         self.downpayment = downpayment
@@ -151,9 +152,9 @@ class ROI():
 
     #method for adding up total investment in ROI Class
     def totalInvestment(self):
-        for i in invested:
-            if i != None:
-                self.totalinvested += self.i
+        for i in self.invested:
+            if i.value != None:
+                self.totalinvested += i.value
 
 #initializing the Handler Class
 class Handler():
@@ -186,6 +187,7 @@ class Handler():
                 if action.lower() == "r":
                     roi.initial()
                     roi.totalInvestment()
+                    print(roi.totalinvested)
                 
             
                 
